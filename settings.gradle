@@ -1,2 +1,4 @@
 rootProject.name = 'hotel-booking-microservices'
 include 'discovery-service'
+include 'gateway-service'
+

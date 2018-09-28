@@ -34,3 +34,6 @@ subprojects {
 	}
 }
 
+ext {
+	springCloudVersion = 'Finchley.SR1'
+}
