@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping(value = "/api/roomCategories", produces = "application/json")
+@RequestMapping(value = "/v1/roomCategories", produces = "application/json")
 public class RoomCategoryController {
 
     private RoomCategoryService service;

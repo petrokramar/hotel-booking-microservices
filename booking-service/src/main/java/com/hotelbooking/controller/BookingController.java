@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping(value = "/api/booking", produces = "application/json")
+@RequestMapping(value = "/v1/booking", produces = "application/json")
 public class BookingController {
 
     private BookingService service;

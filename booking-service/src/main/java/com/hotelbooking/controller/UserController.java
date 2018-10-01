@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping(value = "/api/users", produces = "application/json")
+@RequestMapping(value = "/v1/users", produces = "application/json")
 public class UserController {
 
     private UserService service;

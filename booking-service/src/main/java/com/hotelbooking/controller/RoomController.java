@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping(value = "/api/rooms", produces = "application/json")
+@RequestMapping(value = "/v1/rooms", produces = "application/json")
 public class RoomController {
 
     private RoomService service;
