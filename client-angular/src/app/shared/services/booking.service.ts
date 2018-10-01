@@ -6,7 +6,7 @@ import {Booking} from '../../model/entity/booking';
 @Injectable()
 export class BookingService {
 
-  private url = '/api/booking';
+  private url = '/api/booking-service/booking';
 
   constructor(private http: HttpClient) { }
 

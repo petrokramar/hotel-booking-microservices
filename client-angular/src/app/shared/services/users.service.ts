@@ -7,7 +7,7 @@ import {User} from '../../model/entity/user';
 @Injectable()
 export class UsersService {
 
-  private url = '/api/users';
+  private url = '/api/booking-service/users';
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',

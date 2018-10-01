@@ -8,7 +8,7 @@ import {CountryListDTO} from '../../model/dto/countryListDTO';
 @Injectable()
 export class CountriesService {
 
-  private url = '/api/countries';
+  private url = '/api/booking-service/countries';
   private httpOptions = {
     headers: new HttpHeaders({
     'Content-Type':  'application/json',

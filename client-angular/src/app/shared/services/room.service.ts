@@ -8,7 +8,7 @@ import {RoomRequest} from '../../model/request/roomRequest';
 @Injectable()
 export class RoomService {
 
-  private url = '/api/rooms';
+  private url = '/api/booking-service/rooms';
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',

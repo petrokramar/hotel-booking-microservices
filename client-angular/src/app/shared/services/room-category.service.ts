@@ -8,7 +8,7 @@ import {Country} from '../../model/entity/country';
 @Injectable()
 export class RoomCategoryService {
 
-  private url = '/api/roomCategories';
+  private url = '/api/booking-service/roomCategories';
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
