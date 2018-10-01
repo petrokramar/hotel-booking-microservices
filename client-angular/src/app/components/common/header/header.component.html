@@ -1,0 +1,23 @@
+<mat-toolbar color="primary">
+  <span>
+    <img src="assets/img/hotel.png" class="angular-logo">
+    Booking hotels
+  </span>
+  <button mat-button routerLink="findingRoom" *ngIf="isUser">Find room</button>
+  <button mat-button routerLink="booking" *ngIf="isUser">Booked rooms</button>
+  <button mat-button [mat-menu-trigger-for]="managerMenu" *ngIf="isAdminUser">Manager</button>
+  <mat-menu #managerMenu="matMenu">
+    <button mat-menu-item routerLink="countries">Countries</button>
+    <button mat-menu-item routerLink="cities">Cities</button>
+    <button mat-menu-item routerLink="hotels" *ngIf="isUser">Hotels</button>
+    <button mat-menu-item routerLink="rooms" *ngIf="isUser">Rooms</button>
+    <button mat-menu-item routerLink="roomCategories">Room categories</button>
+  </mat-menu>
+  <button mat-button [mat-menu-trigger-for]="adminMenu" *ngIf="isAdminUser">Admin</button>
+  <mat-menu #adminMenu="matMenu">
+    <button mat-menu-item routerLink="users">Users</button>
+  </mat-menu>
+  <span class="fill-remaining-space"></span>
+  <button mat-button routerLink="login" *ngIf="isUser">Login</button>
+  <button mat-button (click)="onLogout()" *ngIf="isUser">Logout</button>
+</mat-toolbar>

@@ -1,0 +1,23 @@
+<div>
+  <button mat-button color="primary" (click)="goBack()">&#8678; Back to room categories</button>
+</div>
+<div class="header">
+  <h1>Room category</h1>
+</div>
+<div *ngIf="!isLoaded">
+  Loading ...
+</div>
+<div *ngIf="isLoaded">
+  <form class="room-category-form" *ngIf="isLoaded" #roomCategoryForm="ngForm"
+        (ngSubmit)="onRoomCategorySubmit(roomCategoryForm.value)">
+    <mat-form-field class="example-full-width">
+      <input matInput [(ngModel)]="dataSource.name" name = "name" placeholder="Enter room category name" ngModel
+             required>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput [(ngModel)]="dataSource.description" name = "description"
+             placeholder="Enter room category description" ngModel required>
+    </mat-form-field>
+    <button mat-button color="primary">Submit</button>
+  </form>
+</div>

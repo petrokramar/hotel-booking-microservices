@@ -1,0 +1,25 @@
+<div class="header">
+  <h1>Room categories</h1>
+</div>
+<div *ngIf="!isLoaded">
+  Loading ...
+</div>
+<div *ngIf="isLoaded">
+<mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
+      <mat-cell *matCellDef="let roomCategory"> {{roomCategory.id}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+      <mat-cell *matCellDef="let roomCategory"> {{roomCategory.name}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="description">
+      <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+      <mat-cell *matCellDef="let roomCategory"> {{roomCategory.description}} </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="gotoRoomCategory(row.id)"></mat-row>
+  </mat-table>
+  <button mat-button color="primary" (click)="addRoomCategory()">Add room category</button>
+</div>

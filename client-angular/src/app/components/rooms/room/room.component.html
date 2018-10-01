@@ -1,0 +1,38 @@
+<div>
+  <button mat-button color="primary" (click)="goBack()">&#8678; Back to rooms</button>
+</div>
+<div class="header">
+  <h1>Room</h1>
+</div>
+<div *ngIf="!isLoaded">
+  Loading ...
+</div>
+<div *ngIf="isLoaded">
+  <form class="room-form" *ngIf="isLoaded" #roomForm="ngForm" (ngSubmit)="onRoomSubmit(roomForm.value)">
+    <mat-form-field class="example-full-width">
+      <mat-select [(ngModel)]="hotelId" name="hotelId" placeholder="Select hotel" [(value)]="hotelId" required>
+        <mat-option *ngFor="let hotel of hotels" [value]="hotel.id">
+          {{ hotel.name }} / {{ hotel.city.name }} / {{ hotel.city.country.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput [(ngModel)]="dataSource.number" name = "number" placeholder="Enter room number" ngModel required>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-select [(ngModel)]="roomCategoryId" name="roomCategoryId" placeholder="Select room category"
+                  [(value)]="roomCategoryIdId" required>
+        <mat-option *ngFor="let roomCategory of roomCategories" [value]="roomCategory.id">
+          {{ roomCategory.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput [(ngModel)]="dataSource.price" name = "price" placeholder="Enter price" ngModel required>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <input matInput [(ngModel)]="dataSource.persons" name = "persons" placeholder="Enter max number of persons" ngModel required>
+    </mat-form-field>
+    <button mat-button color="primary">Submit</button>
+  </form>
+</div>

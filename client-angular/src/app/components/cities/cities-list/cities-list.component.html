@@ -1,0 +1,35 @@
+<div class="header">
+  <h1>Cities</h1>
+</div>
+<div>
+  <mat-form-field>
+    <input matInput placeholder="Search cities" #input>
+  </mat-form-field>
+
+  <div class="spinner-container" *ngIf="!isLoaded">
+    <mat-spinner></mat-spinner>
+  </div>
+  <mat-table [dataSource]="dataSource" matSort matSortActive="city" matSortDirection="asc" matSortDisableClear>
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
+      <mat-cell *matCellDef="let city"> {{city.id}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="city">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> City </mat-header-cell>
+      <mat-cell *matCellDef="let city"> {{city.name}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="countryId">
+      <mat-header-cell *matHeaderCellDef> Country id </mat-header-cell>
+      <mat-cell *matCellDef="let city"> {{city.country.id}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="country">
+      <mat-header-cell *matHeaderCellDef> Country </mat-header-cell>
+      <mat-cell *matCellDef="let city"> {{city.country.name}} </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="gotoCity(row.id)"></mat-row>
+  </mat-table>
+  <mat-paginator [length]="totalCities" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+  </mat-paginator>
+  <button mat-button color="primary" (click)="addCity()">Add city</button>
+</div>

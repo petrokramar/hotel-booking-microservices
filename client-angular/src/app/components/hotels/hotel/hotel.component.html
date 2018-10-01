@@ -1,0 +1,31 @@
+<div>
+  <button mat-button color="primary" (click)="goBack()">&#8678; Back to hotels</button>
+</div>
+<div class="header">
+  <h1>Hotel</h1>
+</div>
+<div *ngIf="!isLoaded">
+  Loading ...
+</div>
+<div *ngIf="isLoaded">
+  <form class="hotel-form" *ngIf="isLoaded" #hotelForm="ngForm" (ngSubmit)="onHotelSubmit(hotelForm.value)">
+    <mat-form-field class="example-full-width">
+      <input matInput [(ngModel)]="dataSource.name" name = "name" placeholder="Enter hotel name" ngModel required>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-select [(ngModel)]="cityId" name="cityId" placeholder="Select city" [(value)]="cityId" required>
+        <mat-option *ngFor="let city of cities" [value]="city.id">
+          {{ city.name }}, {{ city.country.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+      <mat-select [(ngModel)]="hotelCategory" name="hotelCategory" placeholder="Select hotel category" [(value)]="hotelCategory" required>
+        <mat-option *ngFor="let hotelCategory of hotelCategories" [value]="hotelCategory">
+          {{ hotelCategory }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-button color="primary">Submit</button>
+  </form>
+</div>

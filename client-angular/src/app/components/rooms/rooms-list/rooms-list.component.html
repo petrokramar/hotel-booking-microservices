@@ -1,0 +1,45 @@
+<div class="header">
+  <h1>Rooms</h1>
+</div>
+<div *ngIf="!isLoaded">
+  Loading ...
+</div>
+<div *ngIf="isLoaded">
+  <mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="country">
+      <mat-header-cell *matHeaderCellDef> Country </mat-header-cell>
+      <mat-cell *matCellDef="let room"> {{room.hotel.city.country.name}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="city">
+      <mat-header-cell *matHeaderCellDef> City </mat-header-cell>
+      <mat-cell *matCellDef="let room"> {{room.hotel.city.name}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="hotel">
+      <mat-header-cell *matHeaderCellDef> Hotel </mat-header-cell>
+      <mat-cell *matCellDef="let room"> {{room.hotel.name}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="number">
+      <mat-header-cell *matHeaderCellDef> Number </mat-header-cell>
+      <mat-cell *matCellDef="let room"> {{room.number}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="roomCategory">
+      <mat-header-cell *matHeaderCellDef> Room Category </mat-header-cell>
+      <mat-cell *matCellDef="let room"> {{room.roomCategory.name}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
+      <mat-cell *matCellDef="let room"> {{room.id}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="price">
+      <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+      <mat-cell *matCellDef="let room"> {{room.price}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="persons">
+      <mat-header-cell *matHeaderCellDef> Persons </mat-header-cell>
+      <mat-cell *matCellDef="let room"> {{room.persons}} </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"  (click)="gotoRoom(row.id)"></mat-row>
+  </mat-table>
+  <button mat-button color="primary" (click)="addRoom()">Add room</button>
+</div>

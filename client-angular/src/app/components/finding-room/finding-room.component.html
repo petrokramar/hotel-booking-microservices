@@ -1,0 +1,39 @@
+<div class="search">
+  <mat-form-field>
+    <input matInput [matDatepicker]="checkInDate" [min]="minCheckIn" [(ngModel)]="checkIn"
+           placeholder="Check-in" disabled (dateChange)="checkDates()">
+    <mat-datepicker-toggle matSuffix [for]="checkInDate"></mat-datepicker-toggle>
+    <mat-datepicker #checkInDate disabled="false"></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput [matDatepicker]="checkOutDate" [min]="minCheckOut" [(ngModel)]="checkOut"
+           placeholder="Check-out" disabled>
+    <mat-datepicker-toggle matSuffix [for]="checkOutDate"></mat-datepicker-toggle>
+    <mat-datepicker #checkOutDate disabled="false"></mat-datepicker>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="City" aria-label="City" [matAutocomplete]="auto" [formControl]="cityCtrl">
+    <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayCity">
+      <mat-option *ngFor="let city of filteredCities" [value]="city">
+        {{ city.name }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  <button mat-button color="primary" (click)="getHotelsWithFreeRooms(cityCtrl.value.id, checkIn, checkOut)"
+          [disabled]="!(cityCtrl.value && cityCtrl.value.id)">Find hotels
+  </button>
+</div>
+<div class="spinner-container" *ngIf="!isLoaded">
+  <mat-spinner></mat-spinner>
+</div>
+<mat-table [dataSource]="dataSource">
+  <ng-container matColumnDef="hotel">
+    <mat-header-cell *matHeaderCellDef> Hotel </mat-header-cell>
+    <mat-cell *matCellDef="let hotel"> {{hotel.name}} </mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  <!--<mat-row *matRowDef="let row; columns: displayedColumns;" (click)="gotoCity(row.id)"></mat-row>-->
+</mat-table>
+<mat-paginator [length]="totalHotels" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+</mat-paginator>

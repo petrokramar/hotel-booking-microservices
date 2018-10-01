@@ -1,0 +1,44 @@
+<div class="header">
+  <h1>Booked rooms</h1>
+</div>
+<div *ngIf="!isLoaded">
+  Loading ...
+</div>
+<div *ngIf="isLoaded">
+  <mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
+      <mat-cell *matCellDef="let booking"> {{booking.id}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="country">
+      <mat-header-cell *matHeaderCellDef> Country </mat-header-cell>
+      <mat-cell *matCellDef="let booking"> {{booking.room.hotel.city.country.name}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="user">
+      <mat-header-cell *matHeaderCellDef> User </mat-header-cell>
+      <mat-cell *matCellDef="let booking"> {{booking.user.username}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="city">
+      <mat-header-cell *matHeaderCellDef> City </mat-header-cell>
+      <mat-cell *matCellDef="let booking"> {{booking.room.hotel.city.name}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="hotel">
+      <mat-header-cell *matHeaderCellDef> Hotel </mat-header-cell>
+      <mat-cell *matCellDef="let booking"> {{booking.room.hotel.name}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="room">
+      <mat-header-cell *matHeaderCellDef> Room </mat-header-cell>
+      <mat-cell *matCellDef="let booking"> {{booking.room.number}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="checkIn">
+      <mat-header-cell *matHeaderCellDef> Check-in </mat-header-cell>
+      <mat-cell *matCellDef="let booking"> {{booking.checkIn}} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="checkOut">
+      <mat-header-cell *matHeaderCellDef> Check-out </mat-header-cell>
+      <mat-cell *matCellDef="let booking"> {{booking.checkOut}} </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>

@@ -1,0 +1,29 @@
+<mat-tab-group class="login-form">
+  <mat-tab label="Log In">
+    <form class="example-form" #loginForm="ngForm" (ngSubmit)="onLoginSubmit(loginForm.value)">
+      <mat-form-field class="example-full-width">
+        <input matInput name="username" placeholder="Enter your username or email" ngModel required>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input type="password" matInput name="password" placeholder="Enter your password" ngModel required>
+      </mat-form-field>
+      <button mat-button color="primary">Submit</button>
+    </form>
+    <!--<alert *ngIf="errorMessage" type="danger">{{ errorMessage }}</alert>-->
+  </mat-tab>
+  <mat-tab label="Sign Up">
+    <form class="example-form" #loginForm="ngForm" (onSignupSubmit)="onLoginSubmit(loginForm.value)">
+      <mat-form-field class="example-full-width">
+        <input matInput name="username" placeholder="Enter your username" ngModel required>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input matInput type="email" name="email" placeholder="Enter your email" ngModel required>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input type="password" matInput name="password" placeholder="Enter your password" ngModel required>
+      </mat-form-field>
+      <button mat-button color="primary">Submit</button>
+    </form>
+    <!--<alert *ngIf="errorMessage" type="danger">{{ errorMessage }}</alert>-->
+  </mat-tab>
+</mat-tab-group>
