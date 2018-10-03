@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-import javax.persistence.criteria.From;
 import java.util.List;
 
 public interface CountryRepository  extends CrudRepository<Country, Integer> {
