@@ -1,4 +1,4 @@
-SET SCHEMA BOOKING_HOTELS_SCHEMA;
+-- SET SCHEMA BOOKING_HOTELS_SCHEMA;
 INSERT INTO users(username, password, enabled, first_name, last_name)
 VALUES('BobMarley', '{noop}1', 'true', 'Bob', 'Marley');
 INSERT INTO users(username, password, enabled, first_name, last_name)
