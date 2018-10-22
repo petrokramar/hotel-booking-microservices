@@ -1,5 +1,6 @@
 package com.hotelbooking.demo.service;
 
+import com.hotelbooking.demo.model.User;
 import com.hotelbooking.demo.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,5 +18,10 @@ public class UserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         return userRepository.findOneByUsername(username);
+    }
+
+    public UserDetails register(User user) {
+        userRepository.save(user);
+        return userRepository.findOneByUsername(user.getUsername());
     }
 }

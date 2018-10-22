@@ -17,20 +17,10 @@ export class LoginComponent implements OnInit {
   }
 
   onLoginSubmit(credentials) {
-    // this.auth.login(credentials).subscribe(
-    //   data => {
-    //     console.log(data);
-    //   }
-    // )
+    this.auth.login(credentials).subscribe(
+    )
 
-    // .map(res => res.json())
-       // .subscribe(
-       //   response => this.auth.finishAuthentication(response.token),
-       //   error => this.errorMessage = error.json().message
-       // );
-   }
-
-   onSignupSubmit(credentials) {
+   // onSignupSubmit(credentials) {
   //   this.auth.signup(credentials)
   //     .map(res => res.json())
   //     .subscribe(
@@ -38,28 +28,4 @@ export class LoginComponent implements OnInit {
   //       error => this.errorMessage = error.json().message
   //     );
    }
-
-  // login() {
-  //   this.loading = true;
-  //
-  //   this.authenticationService.login(this.model.username, this.model.password)
-  //     .subscribe(
-  //       result => {
-  //         this.loading = false;
-  //
-  //         if (result) {
-  //           this.userService.login(result);
-  //           this.navigateAfterSuccess();
-  //         } else {
-  //           this.error = 'Username or password is incorrect';
-  //         }
-  //       },
-  //       error => {
-  //         this.error = 'Username or password is incorrect';
-  //         this.loading = false;
-  //       }
-  //     );
-  // }
-
-
 }
