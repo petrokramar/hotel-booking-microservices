@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @AllArgsConstructor
 @RequestMapping(value = "/v1/users", produces = "application/json")
@@ -17,10 +19,9 @@ public class UserController {
 
     UserService userService;
 
-    @PostMapping
-    public ResponseEntity<?> create(@RequestBody User user) {
+    @PostMapping("/registration")
+    public ResponseEntity<?> create(@RequestBody @Valid User user) {
         userService.register(user);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
-
 }

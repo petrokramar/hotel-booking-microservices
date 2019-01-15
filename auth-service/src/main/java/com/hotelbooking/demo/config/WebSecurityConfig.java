@@ -16,6 +16,19 @@ import org.springframework.security.web.access.channel.ChannelProcessingFilter;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+	private static final String[] AUTH_WHITELIST = {
+			"/login",
+			// -- swagger ui
+			"/v2/api-docs",
+//			"/swagger-resources",
+			"/swagger-resources/**",
+//			"/configuration/ui",
+//			"/configuration/security",
+			"/swagger-ui.html",
+			"/webjars/**"
+			// other public endpoints of your API may be appended to this array
+	};
+
 	@Autowired
 	private CorsFilter corsFilter;
 
@@ -25,15 +38,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		web.ignoring()
-				.antMatchers("/login");
+		web.ignoring().antMatchers(AUTH_WHITELIST);
 	}
 
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
-		http.antMatcher("/authserver/**")
+		http
+				.authorizeRequests().antMatchers("/authserver/h2-console/").permitAll()
+				.and().antMatcher("/authserver/**")
 				.authorizeRequests().anyRequest().authenticated()
 				.and().addFilterBefore(corsFilter, ChannelProcessingFilter.class);
+		http.headers().frameOptions().disable();
 	}
 
 	@Bean
