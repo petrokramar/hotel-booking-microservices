@@ -1,0 +1,7 @@
+version: "3.3"
+services:
+  discovery-service:
+      build:
+          context: discovery-service
+          dockerfile: Dockerfile
+      restart: always
