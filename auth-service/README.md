@@ -1,6 +1,6 @@
 ## Get token
 ### localhost
-curl -X POST --user "auth:auth" -d "grant_type=password&username=peter@example.com&password=password" http://localhost:9002/authserver/oauth/token
+curl -X POST --user "auth:auth" -d "grant_type=password&username=peter&password=password" http://localhost:9002/authserver/oauth/token
 
 ## Commands examples (Chrome console)
 

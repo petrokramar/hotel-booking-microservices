@@ -6,5 +6,12 @@ CREATE TABLE users (
     user_id BIGSERIAL PRIMARY KEY,
     username VARCHAR(128) NOT NULL UNIQUE,
     password VARCHAR(256)NOT NULL,
-    enabled BOOL NOT NULL
+    enabled BOOL NOT NULL,
+    email VARCHAR(256)NOT NULL,
+    activation_code VARCHAR(256)NOT NULL
+);
+
+create table user_role (
+    user_id BIGINT REFERENCES users(user_id),
+    role VARCHAR(256)
 );

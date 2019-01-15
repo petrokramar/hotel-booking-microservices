@@ -1,6 +1,9 @@
 -- SET SCHEMA AUTH_SERVICE_SCHEMA;
-INSERT INTO users (user_id, username, password, enabled) VALUES
-	('1', 'peter@example.com', '$2a$10$D4OLKI6yy68crm.3imC9X.P2xqKHs5TloWUcr6z5XdOqnTrAK84ri', true),
-	('2', 'john@example.com', '$2a$10$D4OLKI6yy68crm.3imC9X.P2xqKHs5TloWUcr6z5XdOqnTrAK84ri', true),
-	('3', 'katie@example.com', '$2a$10$D4OLKI6yy68crm.3imC9X.P2xqKHs5TloWUcr6z5XdOqnTrAK84ri', true),
-	('4', 'user', '$2a$10$D4OLKI6yy68crm.3imC9X.P2xqKHs5TloWUcr6z5XdOqnTrAK84ri', true);
+INSERT INTO users (user_id, username, password, enabled, email, activation_code) VALUES
+	  ('1', 'peter', '$2a$10$D4OLKI6yy68crm.3imC9X.P2xqKHs5TloWUcr6z5XdOqnTrAK84ri', true, 'peter@example.com', ''),
+	  ('2', 'john', '$2a$10$D4OLKI6yy68crm.3imC9X.P2xqKHs5TloWUcr6z5XdOqnTrAK84ri', true, 'john@example.com', ''),
+	  ('3', 'katie', '$2a$10$D4OLKI6yy68crm.3imC9X.P2xqKHs5TloWUcr6z5XdOqnTrAK84ri', true, 'katie@example.com', ''),
+	  ('4', 'user', '$2a$10$D4OLKI6yy68crm.3imC9X.P2xqKHs5TloWUcr6z5XdOqnTrAK84ri', true, 'user@example.com', '');
+
+insert into user_role (user_id, role) VALUES
+    (1, 'USER'), (1, 'ADMIN'), (2, 'USER'), (3, 'USER'), (4, 'USER');
