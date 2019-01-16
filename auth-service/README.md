@@ -12,7 +12,7 @@ fetch('/authserver/oauth/token', {
     'Authorization': 'Basic ' + btoa('auth:auth'),
     'Content-Type': 'application/x-www-form-urlencoded'
   }),
-  body: 'grant_type=password&username=peter@example.com&password=password'
+  body: 'grant_type=password&username=max&password=password'
 })
 .then(r => r.json())
 .then(r => console.log(r))
