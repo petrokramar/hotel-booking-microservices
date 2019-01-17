@@ -36,7 +36,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Import(SecurityConfig.class)
 public class HotelControllerTest{
 
-    private final String HOTELS_URL = "/api/hotels";
+    private final String HOTELS_URL = "/v1/hotels";
     private final int HOTEL_ONE_ID = 1;
     private final int HOTEL_TWO_ID = 2;
     private final int HOTEL_THREE_ID = 3;

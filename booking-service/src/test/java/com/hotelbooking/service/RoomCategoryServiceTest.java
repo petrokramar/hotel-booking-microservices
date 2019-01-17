@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
@@ -65,14 +66,14 @@ public class RoomCategoryServiceTest {
         // given
         RoomCategory expectedRoomCategory = new RoomCategory(ROOM_CATEGORY_ONE_ID, "Room category name",
                 "Room category description" );
-        given(repository.findOne(ROOM_CATEGORY_ONE_ID)).willReturn(expectedRoomCategory);
+        given(repository.findById(ROOM_CATEGORY_ONE_ID)).willReturn(Optional.of(expectedRoomCategory));
 
         //when
         RoomCategory actualRoomCategory = service.getRoomCategory(ROOM_CATEGORY_ONE_ID);
 
         //then
         assertEquals(expectedRoomCategory, actualRoomCategory);
-        verify(repository).findOne(ROOM_CATEGORY_ONE_ID);
+        verify(repository).findById(ROOM_CATEGORY_ONE_ID);
         verifyNoMoreInteractions(repository);
     }
 
@@ -80,7 +81,7 @@ public class RoomCategoryServiceTest {
     public void getRoomCategoryNotFound() {
 
         // given
-        given(repository.findOne(ROOM_CATEGORY_ONE_ID)).willReturn(null);
+        given(repository.findById(ROOM_CATEGORY_ONE_ID)).willReturn(Optional.empty());
 
         //when
         RoomCategory roomCategory = service.getRoomCategory(ROOM_CATEGORY_ONE_ID);

@@ -44,7 +44,7 @@ public class User implements UserDetails {
     private String password;
 
     @Column(name = "enabled", nullable = false)
-    private boolean enabled = true;
+    private boolean enabled;
 
     @Column
     private String email;

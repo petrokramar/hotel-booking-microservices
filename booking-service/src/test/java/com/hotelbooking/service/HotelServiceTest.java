@@ -14,6 +14,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
@@ -72,14 +73,14 @@ public class HotelServiceTest {
         Country country = new Country(COUNTRY_ID, "Country name");
         City city = new City(CITY_ID, "City name", country);
         Hotel expectedHotel = new Hotel(HOTEL_ONE_ID, "Hotel name", city, HotelCategory.FIVE_STARS);
-        given(repository.findOne(HOTEL_ONE_ID)).willReturn(expectedHotel);
+        given(repository.findById(HOTEL_ONE_ID)).willReturn(Optional.of(expectedHotel));
 
         //when
         Hotel actualHotel = service.getHotel(HOTEL_ONE_ID);
 
         //then
         assertEquals(expectedHotel, actualHotel);
-        verify(repository).findOne(HOTEL_ONE_ID);
+        verify(repository).findById(HOTEL_ONE_ID);
         verifyNoMoreInteractions(repository);
     }
 
@@ -87,7 +88,7 @@ public class HotelServiceTest {
     public void getHotelNotFound() {
 
         // given
-        given(repository.findOne(HOTEL_ONE_ID)).willReturn(null);
+        given(repository.findById(HOTEL_ONE_ID)).willReturn(Optional.empty());
 
         //when
         Hotel hotel = service.getHotel(HOTEL_ONE_ID);
@@ -103,7 +104,7 @@ public class HotelServiceTest {
         Country country = new Country(COUNTRY_ID, "Country name");
         City city = new City(CITY_ID, "City name", country);
         Hotel expectedHotel = new Hotel(HOTEL_ONE_ID, "Hotel name", city, HotelCategory.FIVE_STARS);
-        given(cityRepository.findOne(CITY_ID)).willReturn(city);
+        given(cityRepository.findById(CITY_ID)).willReturn(Optional.of(city));
         given(repository.save(expectedHotel)).willReturn(expectedHotel);
 
         //when
@@ -111,7 +112,7 @@ public class HotelServiceTest {
 
         //then
         assertEquals(expectedHotel, actualHotel);
-        verify(cityRepository).findOne(CITY_ID);
+        verify(cityRepository).findById(CITY_ID);
         verifyNoMoreInteractions(cityRepository);
         verify(repository).save(expectedHotel);
         verifyNoMoreInteractions(repository);

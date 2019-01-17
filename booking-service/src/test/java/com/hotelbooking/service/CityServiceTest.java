@@ -12,6 +12,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
@@ -66,14 +67,14 @@ public class CityServiceTest {
         // given
         Country country = new Country(COUNTRY_ID, "Country name");
         City expectedCity = new City(CITY_ONE_ID, "City name", country);
-        given(repository.findOne(CITY_ONE_ID)).willReturn(expectedCity);
+        given(repository.findById(CITY_ONE_ID)).willReturn(Optional.of(expectedCity));
 
         //when
         City actualCity = service.getCity(CITY_ONE_ID);
 
         //then
         assertEquals(expectedCity, actualCity);
-        verify(repository).findOne(CITY_ONE_ID);
+        verify(repository).findById(CITY_ONE_ID);
         verifyNoMoreInteractions(repository);
     }
 
@@ -81,7 +82,7 @@ public class CityServiceTest {
     public void getCityNotFound() {
 
         // given
-        given(repository.findOne(CITY_ONE_ID)).willReturn(null);
+        given(repository.findById(CITY_ONE_ID)).willReturn(Optional.empty());
 
         //when
         City city = service.getCity(CITY_ONE_ID);
@@ -96,7 +97,7 @@ public class CityServiceTest {
         CityRequest request = new CityRequest(CITY_ONE_ID, "City name", COUNTRY_ID);
         Country country = new Country(COUNTRY_ID, "Country name");
         City expectedCity = new City(CITY_ONE_ID, "City name", country);
-        given(countryRepository.findOne(COUNTRY_ID)).willReturn(country);
+        given(countryRepository.findById(COUNTRY_ID)).willReturn(Optional.of(country));
         given(repository.save(expectedCity)).willReturn(expectedCity);
 
         //when
@@ -104,7 +105,7 @@ public class CityServiceTest {
 
         //then
         assertEquals(expectedCity, actualCity);
-        verify(countryRepository).findOne(COUNTRY_ID);
+        verify(countryRepository).findById(COUNTRY_ID);
         verifyNoMoreInteractions(countryRepository);
         verify(repository).save(expectedCity);
         verifyNoMoreInteractions(repository);

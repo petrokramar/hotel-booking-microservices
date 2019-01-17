@@ -33,7 +33,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Import(SecurityConfig.class)
 public class BookingControllerTest {
 
-    private final String BOOKING_URL = "/api/booking";
+    private final String BOOKING_URL = "/v1/booking";
     private final int BOOKING_ONE_ID = 1;
     private final int COUNTRY_ID = 2;
     private final int CITY_ID = 3;

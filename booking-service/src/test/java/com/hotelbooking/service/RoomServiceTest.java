@@ -12,6 +12,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
@@ -94,14 +95,14 @@ public class RoomServiceTest {
                 "Room category description" );
         Room expectedRoom = new Room(ROOM_ONE_ID, ROOM_ONE_NUMBER, hotel, roomCategory, ROOM_ONE_PRICE,
                 ROOM_ONE_NUMBER_OF_PERSONS);
-        given(repository.findOne(ROOM_ONE_ID)).willReturn(expectedRoom);
+        given(repository.findById(ROOM_ONE_ID)).willReturn(Optional.of(expectedRoom));
 
         //when
         Room actualRoom = service.getRoom(ROOM_ONE_ID);
 
         //then
         assertEquals(expectedRoom, actualRoom);
-        verify(repository).findOne(ROOM_ONE_ID);
+        verify(repository).findById(ROOM_ONE_ID);
         verifyNoMoreInteractions(repository);
     }
 
@@ -109,7 +110,7 @@ public class RoomServiceTest {
     public void getRoomNotFound() {
 
         // given
-        given(repository.findOne(ROOM_ONE_ID)).willReturn(null);
+        given(repository.findById(ROOM_ONE_ID)).willReturn(Optional.empty());
 
         //when
         Room room = service.getRoom(ROOM_ONE_ID);
@@ -130,8 +131,8 @@ public class RoomServiceTest {
                 "Room category description" );
         Room expectedRoom = new Room(ROOM_ONE_ID, ROOM_ONE_NUMBER, hotel, roomCategory, ROOM_ONE_PRICE,
                 ROOM_ONE_NUMBER_OF_PERSONS);
-        given(hotelRepository.findOne(HOTEL_ID)).willReturn(hotel);
-        given(roomCategoryRepository.findOne(ROOM_CATEGORY_ID)).willReturn(roomCategory);
+        given(hotelRepository.findById(HOTEL_ID)).willReturn(Optional.of(hotel));
+        given(roomCategoryRepository.findById(ROOM_CATEGORY_ID)).willReturn(Optional.of(roomCategory));
         given(repository.save(expectedRoom)).willReturn(expectedRoom);
 
         //when
@@ -139,9 +140,9 @@ public class RoomServiceTest {
 
         //then
         assertEquals(expectedRoom, actualRoom);
-        verify(hotelRepository).findOne(HOTEL_ID);
+        verify(hotelRepository).findById(HOTEL_ID);
         verifyNoMoreInteractions(hotelRepository);
-        verify(roomCategoryRepository).findOne(ROOM_CATEGORY_ID);
+        verify(roomCategoryRepository).findById(ROOM_CATEGORY_ID);
         verifyNoMoreInteractions(roomCategoryRepository);
         verify(repository).save(expectedRoom);
         verifyNoMoreInteractions(repository);

@@ -33,7 +33,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Import(SecurityConfig.class)
 public class UserControllerTest {
 
-    private final String USERS_URL = "/api/users";
+    private final String USERS_URL = "/v1/users";
     private final int ROLE_ONE_ID = 1;
     private final int ROLE_TWO_ID = 2;
     private final int ROLE_THREE_ID = 3;

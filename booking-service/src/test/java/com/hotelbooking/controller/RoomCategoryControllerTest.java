@@ -33,7 +33,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Import(SecurityConfig.class)
 public class RoomCategoryControllerTest{
 
-    private final String ROOM_CATEGORIES_URL = "/api/roomCategories";
+    private final String ROOM_CATEGORIES_URL = "/v1/roomCategories";
     private final int ROOM_CATEGORY_ONE_ID = 1;
     private final int ROOM_CATEGORY_TWO_ID = 2;
     private final int ROOM_CATEGORY_THREE_ID = 3;

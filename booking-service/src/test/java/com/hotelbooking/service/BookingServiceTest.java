@@ -110,14 +110,14 @@ public class BookingServiceTest {
         Date dateEnd = format.parse("10-04-2018");
         Booking expectedBooking = new Booking(BOOKING_ONE_ID, roomOne, user, BOOKING_ONE_TOTAL_SUM,
                 BOOKING_ONE_NUMBER_OF_PERSONS, dateBegin, dateEnd);
-        given(repository.findOne(BOOKING_ONE_ID)).willReturn(expectedBooking);
+        given(repository.findById(BOOKING_ONE_ID)).willReturn(Optional.of(expectedBooking));
 
         //when
         Booking actualBooking = service.getBooking(BOOKING_ONE_ID);
 
         //then
         assertEquals(expectedBooking, actualBooking);
-        verify(repository).findOne(BOOKING_ONE_ID);
+        verify(repository).findById(BOOKING_ONE_ID);
         verifyNoMoreInteractions(repository);
     }
 
@@ -125,7 +125,7 @@ public class BookingServiceTest {
     public void getBookingNotFound() {
 
         // given
-        given(repository.findOne(BOOKING_ONE_ID)).willReturn(null);
+        given(repository.findById(BOOKING_ONE_ID)).willReturn(Optional.empty());
 
         //when
         Booking booking = service.getBooking(BOOKING_ONE_ID);
@@ -157,8 +157,8 @@ public class BookingServiceTest {
         Booking expectedBooking = new Booking(BOOKING_ONE_ID, room, user, BOOKING_ONE_TOTAL_SUM,
                 BOOKING_ONE_NUMBER_OF_PERSONS, dateBegin, dateEnd);
 
-        given(userRepository.findOne("username")).willReturn(user);
-        given(roomRepository.findOne(ROOM_ID)).willReturn(room);
+        given(userRepository.findById("username")).willReturn(Optional.of(user));
+        given(roomRepository.findById(ROOM_ID)).willReturn(Optional.of(room));
         given(repository.save(expectedBooking)).willReturn(expectedBooking);
 
         //when
@@ -166,9 +166,9 @@ public class BookingServiceTest {
 
         //then
         assertEquals(expectedBooking, actualBooking);
-        verify(userRepository).findOne("username");
+        verify(userRepository).findById("username");
         verifyNoMoreInteractions(userRepository);
-        verify(roomRepository).findOne(ROOM_ID);
+        verify(roomRepository).findById(ROOM_ID);
         verifyNoMoreInteractions(roomRepository);
         verify(repository).save(expectedBooking);
         verifyNoMoreInteractions(repository);

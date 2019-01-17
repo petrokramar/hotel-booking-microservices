@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
@@ -59,14 +60,14 @@ public class CountryServiceTest {
 
         // given
         Country expectedCountry = new Country(COUNTRY_ONE_ID, "Country name");
-        given(repository.findOne(COUNTRY_ONE_ID)).willReturn(expectedCountry);
+        given(repository.findById(COUNTRY_ONE_ID)).willReturn(Optional.of(expectedCountry));
 
         //when
         Country actualCountry = service.getCountry(COUNTRY_ONE_ID);
 
         //then
         assertEquals(expectedCountry, actualCountry);
-        verify(repository).findOne(COUNTRY_ONE_ID);
+        verify(repository).findById(COUNTRY_ONE_ID);
         verifyNoMoreInteractions(repository);
     }
 
@@ -74,7 +75,7 @@ public class CountryServiceTest {
     public void getCountryNotFound() {
 
         // given
-        given(repository.findOne(COUNTRY_ONE_ID)).willReturn(null);
+        given(repository.findById(COUNTRY_ONE_ID)).willReturn(Optional.empty());
 
         //when
         Country country = service.getCountry(COUNTRY_ONE_ID);

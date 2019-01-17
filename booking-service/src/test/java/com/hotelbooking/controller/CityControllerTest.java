@@ -34,7 +34,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Import(SecurityConfig.class)
 public class CityControllerTest{
 
-    private final String CITIES_URL = "/api/cities";
+    private final String CITIES_URL = "/v1/cities";
     private final int CITY_ONE_ID = 1;
     private final int CITY_TWO_ID = 2;
     private final int CITY_THREE_ID = 3;

@@ -8,10 +8,7 @@ import com.hotelbooking.service.impl.UserServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
@@ -86,14 +83,14 @@ public class UserServiceTest {
         roles.add(roleTwo);
         User expectedUser = new User("username", "password", USER_ENABLED,
                 "First name","Last name", roles);
-        given(repository.findOne("user1")).willReturn(expectedUser);
+        given(repository.findById("user1")).willReturn(Optional.of(expectedUser));
 
         //when
         User actualUser = service.getUser("user1");
 
         //then
         assertEquals(expectedUser, actualUser);
-        verify(repository).findOne("user1");
+        verify(repository).findById("user1");
         verifyNoMoreInteractions(repository);
     }
 
@@ -101,7 +98,7 @@ public class UserServiceTest {
     public void getUserNotFound() {
 
         // given
-        given(repository.findOne("username")).willReturn(null);
+        given(repository.findById("username")).willReturn(Optional.empty());
 
         //when
         User user = service.getUser("username");

@@ -32,7 +32,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Import(SecurityConfig.class)
 public class CountryControllerTest {
 
-    private final String COUNTRIES_URL = "/api/countries";
+    private final String COUNTRIES_URL = "/v1/countries";
     private final int COUNTRY_ONE_ID = 1;
     private final int COUNTRY_TWO_ID = 2;
     private final int COUNTRY_THREE_ID = 3;
